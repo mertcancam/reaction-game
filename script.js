@@ -1,22 +1,29 @@
 $(function () {
-    $("#login").click(function () {
-        $(".window-login-popup").show(300);
-    });
-    $("#button-login-close").click(function () {
-        $(".window-login-popup").hide(300);
-    });
-     $("#signup-button").click(function () {
-         $(".window-login-popup").hide();
-          $(".window-signup-popup").show();
-    });
-     $("#button-signup-close").click(function () {
-        $(".window-signup-popup").hide(300);
-    });
-});
 
-
-
-function getRandomColor() {
+   $("#toggleLogin").click(function() {
+        
+        if ($("#loginActive").val() == "1") {
+            
+            $("#loginActive").val("0");
+            $("#loginModalTitle").html("Sign Up");
+            $("#loginSignupButton").html("Sign Up");
+            $("#toggleLogin").html("Login");
+            $("#username-field").show();
+ 
+        } else {
+            
+            $("#loginActive").val("1");
+            $("#loginModalTitle").html("Login");
+            $("#loginSignupButton").html("Login");
+            $("#toggleLogin").html("Sign up");
+            $("#username-field").hide();
+        }
+        
+        
+    })
+    
+  
+  function getRandomColor() {
     var letters = '012345'.split('');
     var color = '#';        
     color += letters[Math.round(Math.random() * 5)];
@@ -76,5 +83,10 @@ $("#beginButton").one("click", function() {
         $("#final-score").html(score.toFixed(3));
         $("#time").html(result);
         timer();
-    });
+    });   
 });
+   
+});
+
+
+
