@@ -1,5 +1,3 @@
-$(function () {
-
    $("#toggleLogin").click(function() {
         
         if ($("#loginActive").val() == "1") {
@@ -85,8 +83,30 @@ $("#beginButton").one("click", function() {
         timer();
     });   
 });
+
+ $("#loginSignupButton").click(function() {
+        
+        $.ajax({
+            type: "POST",
+            url: "action.php?action=loginSignup",
+            data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val() + "&username=" + $("#username").val(),
+            success: function(result) {
+                if (result == "1") {
+                    
+                    window.location.assign("http://mertcancam.com");
+                    
+                } else {
+                    
+                    $("#loginAlert").html(result).show();
+                    
+                }
+            }
+            
+        })
+        
+    })
    
-});
+
 
 
 

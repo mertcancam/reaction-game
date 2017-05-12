@@ -1,6 +1,6 @@
 <?php
 
-   include("functions.php");
+   include("function.php");
 
    include("mainpage.php");
 
