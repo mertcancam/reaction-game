@@ -37,11 +37,14 @@ $("#third-bar").height($(window).height() - $("#top").height() - $("#second-bar"
 
 var counter = 0;
 
+var counterLeft = 15;
+	$("#counter").html(counterLeft);
 
 $("#beginButton").one("click", function() {
     var start = new Date().getTime();
-
+	
     function reappear() {
+		
         var width = ((Math.random() * 100) + 4);
         if (Math.random() < 0.5) {
             $("#shapes").css("borderRadius", "50%");
@@ -57,7 +60,18 @@ $("#beginButton").one("click", function() {
         start = new Date().getTime();
         counter++;
         if (counter == 16) {
-            $(".window-popup").show(100);
+            $(".window-popup").fadeIn(function() {
+				$.ajax({
+					type: "POST",
+					url: "actions.php?action=yourScore",
+					data: "score=" + $("#final-score").html(),
+					success: function(result) {
+                
+                
+            }
+            
+				})
+			});
             $("#button-popup-close").click(function () {
                 $(".window-popup").hide(100);
                 location.reload();
@@ -73,6 +87,8 @@ $("#beginButton").one("click", function() {
     var start = new Date().getTime();
     var score = 0;
     $("#shapes").click(function () {
+		counterLeft--;
+		$("#counter").html(counterLeft);
         $("#shapes").css("display", "none");
         var end = new Date().getTime();
         var result = (end - start) / 1000;
@@ -84,17 +100,18 @@ $("#beginButton").one("click", function() {
     });   
 });
 
- $("#loginSignupButton").click(function() {
+$("#loginSignupButton").click(function() {
         
         $.ajax({
             type: "POST",
-            url: "action.php?action=loginSignup",
-            data: "email=" + $("#email").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val() + "&username=" + $("#username").val(),
+            url: "actions.php?action=loginSignup",
+            data: "email=" + $("#email").val() + "&username=" + $("#username").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
             success: function(result) {
-                if (result == "1") {
-                    
-                    window.location.assign("http://mertcancam.com");
-                    
+				
+				if($.trim(result) == '1'){
+					window.location.assign("http://mertcancam.com");
+				
+			
                 } else {
                     
                     $("#loginAlert").html(result).show();
@@ -105,6 +122,8 @@ $("#beginButton").one("click", function() {
         })
         
     })
+	
+	 
    
 
 

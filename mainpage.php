@@ -6,6 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css"> </head>
@@ -13,14 +14,38 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2" id="logo"> </div>
+      <div class="col-2" id="logo"> 
+        <?php if ($_SESSION['id']) {
+            $query = "SELECT * FROM users WHERE id = '". mysqli_real_escape_string($link, $_SESSION['id'])."' LIMIT 1";
+            
+            $result = mysqli_query($link, $query);
+            
+            $row = mysqli_fetch_assoc($result);
+            
+            echo "<div class='welcome-title'><p> Welcome <br>".$row['username']."</p></div>"; 
+            
+            }
+          ?>
+      </div>
       <div class="col-8" id="top">
         <h1>Welcome To The Reaction Game!</h1>
         <p id="explanation">Click on the boxes and circles as quicly as you can!</p>
       </div>
       <div class="col-2" id="login-signup">
+        <?php if ($_SESSION['id']) {  ?>
 
-        <button class="button-style" id="login-signup-button" data-toggle="modal" data-target="#myModal">Login/Signup</button>
+          <a href="?function=logout">
+            <button class="button-style">Logout</button>
+          </a>
+
+          <?php } else { ?>
+
+            <div>
+
+              <button class="button-style" id="login-signup-button" data-toggle="modal" data-target="#myModal">Login/Signup</button>
+            </div>
+
+            <?php } ?>
 
 
       </div>
@@ -29,18 +54,34 @@
       <div class="col-2" id="section-one">
         <p>Your time:<span id="time" class="time-score"></span></p>
       </div>
-      <div class="col-8" id="section-two">
+      <div class="col-2">
+      
+      </div>
+      <div class="col-4" id="section-two">
         <button class="button-style" id="beginButton">CLICK AND BEGIN !</button>
+      </div>
+      <div class="col-2">
+        <p id="score-text">Counter:<span id="counter" class="time-score"></span></p>
       </div>
       <div class="col-2" id="section-three">
         <p id="score-text">Your score:<span id="score" class="time-score"></span></p>
       </div>
+      
     </div>
     <div class="row" id="third-bar">
       <div class="col-10" id="game-area">
         <div id="shapes"></div>
       </div>
-      <div class="col-2" id="score-area"></div>
+      <div class="col-2" id="score-area">
+        <div class="score-container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="leaderboard-title">Leaderboard</div>
+              <?php displayScores(); ?>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="window-popup">
       <div class="wp-content">
@@ -54,12 +95,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-           <h4 class="modal-title" id="loginModalTitle">Login</h4>
-           
+            <h4 class="modal-title" id="loginModalTitle">Login</h4>
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            
+
           </div>
           <div class="modal-body">
             <div class="alert alert-danger" id="loginAlert"></div>
