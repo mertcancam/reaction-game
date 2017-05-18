@@ -1,4 +1,6 @@
 <?php
+
+  //sleep(2);
   
   include("functions.php");
  
@@ -7,14 +9,21 @@
       $error = "";
       
       if(isset($_POST['username'])){
-        if(strlen($_POST['username']) > 10){
+        if ($_POST['loginActive'] == "0"){
+            if(strlen($_POST['username']) > 10){
           $error = "Your username is too long(Max: 10 characters)";
         }
       }
+        
+      }
       if(isset($_POST['username'])){
-        if(!ctype_alnum($_POST['username'])){
+        if ($_POST['loginActive'] == "0"){
+             if(!ctype_alnum($_POST['username'])){
           $error = "Your username should contain letters and numbers only.(no spaces)";
+          }
         }
+      
+       
       }
       if(isset($_POST['password'])){
         if(strlen($_POST['username']) < 4 and strlen($_POST['username']) > 13 ){
@@ -131,12 +140,12 @@
             }
 
       
-            
+            echo 1;
             
         
       }else {
       
-        echo "Your data will not be saved";
+        echo "Please login if you want your score to be saved.";
       }
       
       

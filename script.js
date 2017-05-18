@@ -19,7 +19,34 @@
         
         
     })
-    
+	
+	var button = document.getElementById("loginSignupButton");
+	
+	function disableSubmitButton() {
+        button.disabled = true;
+      }
+
+      function enableSubmitButton() {
+        button.disabled = false;
+      }
+	
+	function showSpinner() {
+        var spinner = document.getElementById("spinner");
+        spinner.style.display = 'block';
+      }
+
+      function hideSpinner() {
+        var spinner = document.getElementById("spinner");
+        spinner.style.display = 'none';
+      }
+	
+	function resetTheGame(){
+		location.reload();
+	}
+	
+	var reset_button = document.getElementById("resetButton");
+	reset_button.addEventListener("click",resetTheGame);
+
   
   function getRandomColor() {
     var letters = '012345'.split('');
@@ -66,8 +93,11 @@ $("#beginButton").one("click", function() {
 					url: "actions.php?action=yourScore",
 					data: "score=" + $("#final-score").html(),
 					success: function(result) {
-                
-                
+						
+					if($.trim(result) != '1'){
+					 $("#noLoginalert").html(result).show();
+			
+                }
             }
             
 				})
@@ -100,15 +130,19 @@ $("#beginButton").one("click", function() {
     });   
 });
 
-$("#loginSignupButton").click(function() {
-        
-        $.ajax({
+var callback = function() {
+	showSpinner();
+	disableSubmitButton();
+	
+	$.ajax({
             type: "POST",
             url: "actions.php?action=loginSignup",
             data: "email=" + $("#email").val() + "&username=" + $("#username").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
             success: function(result) {
-				
+				hideSpinner();
+				enableSubmitButton();
 				if($.trim(result) == '1'){
+					location.reload();
 					window.location.assign("http://mertcancam.com");
 				
 			
@@ -120,8 +154,15 @@ $("#loginSignupButton").click(function() {
             }
             
         })
-        
-    })
+	
+};
+
+$("#loginSignupButton").click(callback);
+$("input").keypress(function() {
+    if (event.which == 13) callback();
+});
+	
+	
 	
 	 
    

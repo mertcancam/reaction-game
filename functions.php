@@ -39,7 +39,7 @@ if (mysqli_connect_errno()) {
         while ($row = mysqli_fetch_assoc($result)) {
                 
                 if($row['score'] != 999999)
-                   echo "<div id='individual-score'>" .$i.". " .ucfirst($row['username']). ": " .$row['score']. "</div>";
+                   echo "<div id='individual-score'>" .$i.". " .$row['score']. ": " .ucfirst($row['username']). "</div>";
                    $i++;
                 
                 

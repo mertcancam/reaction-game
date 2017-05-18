@@ -14,7 +14,7 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2" id="logo"> 
+      <div class="col-2" id="logo">
         <?php if ($_SESSION['id']) {
             $query = "SELECT * FROM users WHERE id = '". mysqli_real_escape_string($link, $_SESSION['id'])."' LIMIT 1";
             
@@ -55,18 +55,18 @@
         <p>Your time:<span id="time" class="time-score"></span></p>
       </div>
       <div class="col-2">
-      
       </div>
       <div class="col-4" id="section-two">
         <button class="button-style" id="beginButton">CLICK AND BEGIN !</button>
       </div>
       <div class="col-2">
         <p id="score-text">Counter:<span id="counter" class="time-score"></span></p>
+        <button class="button-style" id="resetButton">Reset</button>
       </div>
       <div class="col-2" id="section-three">
         <p id="score-text">Your score:<span id="score" class="time-score"></span></p>
       </div>
-      
+
     </div>
     <div class="row" id="third-bar">
       <div class="col-10" id="game-area">
@@ -88,6 +88,7 @@
         <h1>Game Over!</h1>
         <h2>Your Score Is:</h2>
         <span id="final-score"></span>
+        <div class="alert alert-danger" id="noLoginalert"></div>
         <a href="#" class="btn btn-info" role="button" id="button-popup-close">Close</a>
       </div>
     </div>
@@ -104,6 +105,9 @@
           </div>
           <div class="modal-body">
             <div class="alert alert-danger" id="loginAlert"></div>
+            <div id="spinner">
+              <img src="spinner.gif" width="50" height="50" />
+            </div>
             <form>
               <input type="hidden" id="loginActive" name="loginActive" value="1">
               <fieldset class="form-group">

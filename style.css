@@ -4,11 +4,22 @@
   text-align: center;
   color: beige;
 }
+#resetButton{
+  margin-left: 30px;
+}
+
+#spinner{
+  text-align: center;
+  display: none;
+}
 
 .welcome-title{
   color: beige;
   text-align: center;
   font-size: 120%;
+}
+#noLoginalert{
+  display:none;
 }
 
 body {
