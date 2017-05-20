@@ -4,8 +4,16 @@
   text-align: center;
   color: beige;
 }
+#usernameOption{
+  display:inline;
+}
 #resetButton{
   margin-left: 30px;
+}
+
+.checkbox{
+  text-align: center;
+  margin-top: 10px;
 }
 
 #spinner{

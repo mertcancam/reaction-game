@@ -111,7 +111,7 @@
             <form>
               <input type="hidden" id="loginActive" name="loginActive" value="1">
               <fieldset class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email <span id="usernameOption">or Username</span></label>
                 <input type="email" class="form-control" id="email" placeholder="Email address">
               </fieldset>
               <fieldset class="form-group" id="username-field">
@@ -122,6 +122,15 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password">
               </fieldset>
+            <!--  <div class="checkbox">
+
+                <label>
+
+                  <input type="checkbox" id="stayLoggedIn" name="stayLoggedIn" value="0"> Stay logged in
+
+                </label>
+
+              </div>-->
             </form>
           </div>
           <div class="modal-footer">

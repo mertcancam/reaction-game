@@ -1,11 +1,10 @@
 <?php
-
   //sleep(2);
   
   include("functions.php");
  
     if ($_GET['action'] == "loginSignup") {
-      
+
       $error = "";
       
       if(isset($_POST['username'])){
@@ -47,7 +46,19 @@
 
       }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
       
-        $error = "Please enter a valid email address.";
+        $query = "SELECT * FROM users WHERE username = '". mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
+            
+            $result = mysqli_query($link, $query);
+            
+            $row = mysqli_fetch_assoc($result);
+            
+            if($_POST['email'] != $row['username']){
+              
+              $error = "Please enter a valid email address or check your username.";
+              
+            }
+      
+        
       }
       
       if ($error != "") {
@@ -91,7 +102,7 @@
             
         } else {
             
-            $query = "SELECT * FROM users WHERE email = '". mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
+            $query = "SELECT * FROM users WHERE (username = '". mysqli_real_escape_string($link, $_POST['email'])."') OR ( email = '". mysqli_real_escape_string($link, $_POST['email'])."' ) LIMIT 1";
             
             $result = mysqli_query($link, $query);
             
@@ -101,11 +112,18 @@
                     
                     echo 1;
                     
+                    
                     $_SESSION['id'] = $row['id'];
+                    
+                   /* if($_POST['stayLoggedIn'] == "1"){
+                    
+                      setcookie("id", $row['id'], time() + 60*60*24*365);
+                      
+                    }*/
                     
                 } else {
                     
-                    $error = "Could not find that username/password combination. Please try again.";
+                    $error = "Could not find that (username or email)/password combination. Please try again.";
                     
                 }
 

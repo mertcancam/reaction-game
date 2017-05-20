@@ -7,6 +7,7 @@
             $("#loginSignupButton").html("Sign Up");
             $("#toggleLogin").html("Login");
             $("#username-field").show();
+			$("#usernameOption").hide();
  
         } else {
             
@@ -15,10 +16,13 @@
             $("#loginSignupButton").html("Login");
             $("#toggleLogin").html("Sign up");
             $("#username-field").hide();
+			$("#usernameOption").show();
         }
         
         
     })
+	
+	
 	
 	var button = document.getElementById("loginSignupButton");
 	
@@ -134,16 +138,22 @@ var callback = function() {
 	showSpinner();
 	disableSubmitButton();
 	
+	/*if(document.getElementById('stayLoggedIn').checked) {
+      $("#stayLoggedIn").val('1');
+    } else {
+       $("#stayLoggedIn").val('0');
+    }*/
+	
 	$.ajax({
             type: "POST",
             url: "actions.php?action=loginSignup",
             data: "email=" + $("#email").val() + "&username=" + $("#username").val() + "&password=" + $("#password").val() + "&loginActive=" + $("#loginActive").val(),
             success: function(result) {
+				
 				hideSpinner();
 				enableSubmitButton();
 				if($.trim(result) == '1'){
-					location.reload();
-					window.location.assign("http://mertcancam.com");
+					window.location.replace("http://www.mertcancam.com");
 				
 			
                 } else {

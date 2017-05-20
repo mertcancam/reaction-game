@@ -17,10 +17,7 @@ if (mysqli_connect_errno()) {
         session_unset();
         
     }
-    
-  
-    
-    
+
     function displayScores() {
         
         
@@ -38,12 +35,15 @@ if (mysqli_connect_errno()) {
         $i = 1;
         while ($row = mysqli_fetch_assoc($result)) {
                 
-                if($row['score'] != 999999)
-                   echo "<div id='individual-score'>" .$i.". " .$row['score']. ": " .ucfirst($row['username']). "</div>";
-                   $i++;
-                
-                
-                
+                if($row['score'] != 999999){
+                  
+                   if($row['id'] == $_SESSION['id']){
+                      echo "<div id='individual-score' style='color:darkred;'>" .$i.". " .ucfirst($row['username']). ": " .$row['score']. "</div>";
+                    }else{
+                      echo "<div id='individual-score'>" .$i.". " .ucfirst($row['username']). ": " .$row['score']. "</div>";
+                    }
+                    $i++;
+                }
         }
         
       }
