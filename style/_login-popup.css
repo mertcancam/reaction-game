@@ -1,0 +1,25 @@
+#usernameOption{
+  display:inline;
+}
+
+#spinner{
+  text-align: center;
+  display: none;
+}
+
+#loginAlert {
+  display: none;
+}
+
+#toggleLogin {
+  padding-right: 15px;
+}
+
+#username-field{
+  display: none;
+}
+
+.form-group {
+  width: 50%;
+  margin: 0 auto;
+}

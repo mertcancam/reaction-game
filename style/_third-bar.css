@@ -1,0 +1,23 @@
+#game-area {
+  background-color: beige;
+}
+
+#score-area {
+  border-left: 1px solid #585858;
+  background-color: #257D92;
+  overflow-y: scroll;
+
+}
+
+.leaderboard-title{
+  text-align: center;
+  font-size: 120%;
+  text-decoration: underline;
+}
+
+#individual-score{
+  color:#F2F2F2;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 90%;
+}

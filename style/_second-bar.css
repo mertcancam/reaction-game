@@ -1,0 +1,52 @@
+#second-bar {
+  background-color: #257D92;
+  height: 35px;
+}
+
+#section-one {
+  border-right: 1px solid #585858;
+}
+
+.time-score {
+  color: beige;
+  padding-left: 10px;
+}
+
+.button-style_dropdown{
+  height: 100%;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Bungee Shade', cursive;
+  background-color: #DDDDDD;
+  
+}
+
+.level_options:hover{
+  color:aqua;
+}
+
+#section-two {
+  text-align: center;
+}
+
+.button-style {
+  border-radius: 10px;
+  position: relative;
+  top: 4px;
+  border: none;
+  font-family: 'Bungee Shade', cursive;
+}
+
+#score-text {
+  float: left;
+  position: relative;
+  top: 2px;
+}
+
+#resetButton{
+  margin-left: 30px;
+}
+
+#section-three {
+  border-left: 1px solid #585858;
+}
