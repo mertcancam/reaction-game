@@ -2,49 +2,30 @@
   //sleep(2);
   
   include("functions.php");
+  
+    $login = array('top' => 1);
+  
+   
  
     if ($_GET['action'] == "loginSignup") {
 
-      $error = "";
+      $error = array();
       
-      if(isset($_POST['username'])){
-        if ($_POST['loginActive'] == "0"){
-            if(strlen($_POST['username']) > 10){
-          $error = "Your username is too long(Max: 10 characters)";
-        }
-      }
-        
-      }
-      if(isset($_POST['username'])){
-        if ($_POST['loginActive'] == "0"){
-             if(!ctype_alnum($_POST['username'])){
-          $error = "Your username should contain letters and numbers only.(no spaces)";
-          }
-        }
-      
-       
-      }
-      if(isset($_POST['password'])){
-        if(strlen($_POST['username']) < 4 and strlen($_POST['username']) > 13 ){
-          $error = "Your password's length should be more than 4 less than 14 characters";
-        }
-      }
-      
-      if(!$_POST['email'])
+       if(!$_POST['email'])
       {
-        $error = "An email address is required.";
+         array_push ($error, "An email address is required.");
         
       }else if(!$_POST['password']){
       
-        $error = "Password is required.";
+         array_push ($error, "Password is required.");
         
       }else if(!$_POST['username']){
           
           if ($_POST['loginActive'] == "0"){
-            $error = "Username is required.";
+             array_push ($error, "Username is required.");
           }
 
-      }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
+      }else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == false){
       
         $query = "SELECT * FROM users WHERE username = '". mysqli_real_escape_string($link, $_POST['email'])."' LIMIT 1";
             
@@ -54,16 +35,44 @@
             
             if($_POST['email'] != $row['username']){
               
-              $error = "Please enter a valid email address or check your username.";
+               array_push ($error, "Please enter a valid email address or check your username.");
               
             }
       
         
       }
       
-      if ($error != "") {
+      
+      
+      if(isset($_POST['username'])){
+        if ($_POST['loginActive'] == "0"){
+            if(strlen($_POST['username']) > 10){
+          array_push ($error, "Your username is too long(Max: 10 character)");
+        }
+      }
+        
+      }
+      if(isset($_POST['username'])){
+        if ($_POST['loginActive'] == "0"){
+             if(!ctype_alnum($_POST['username'])){
+               array_push ($error,  "Your username should contain letters and numbers only.(no spaces");
+          }
+        }
+      
+       
+      }
+      if(isset($_POST['password'])){
+         if ($_POST['loginActive'] == "0"){
+          if(strlen($_POST['password']) < 4 or strlen($_POST['password']) > 13 ){
+             array_push($error, "Your password's length should be more than 4 less than 14 characters");
+          }
+        }
+      }
+      
+      
+      if (!empty($error)) {
             
-            echo $error;
+            print json_encode($error);
             exit();
             
         }
@@ -88,19 +97,22 @@
                     $query = "UPDATE users SET password = '". md5(md5($_SESSION['id']).$_POST['password']) ."' WHERE id = ".$_SESSION['id']." LIMIT 1";
                     mysqli_query($link, $query);
                     
-                    echo 1;
+                    print json_encode($login);
+                    return;
                     
                     
                     
                 } else {
                     
-                    $error = "Couldn't create user - please try again later";
+                     array_push ($error, "Couldn't create user - please try again later");
                     
                 }
                 
             }
             
         } else {
+        
+            
             
             $query = "SELECT * FROM users WHERE (username = '". mysqli_real_escape_string($link, $_POST['email'])."') OR ( email = '". mysqli_real_escape_string($link, $_POST['email'])."' ) LIMIT 1";
             
@@ -110,7 +122,7 @@
                 
                 if ($row['password'] == md5(md5($row['id']).$_POST['password'])) {
                     
-                    echo 1;
+                    
                     
                     
                     $_SESSION['id'] = $row['id'];
@@ -121,18 +133,21 @@
                       
                     }*/
                     
+                    print json_encode($login);
+                    return;
+                    
                 } else {
                     
-                    $error = "Could not find that (username or email)/password combination. Please try again.";
+                    array_push ($error, "Could not find that (username or email)/password combination. Please try again.");
                     
                 }
 
             
         }
         
-         if ($error != "") {
+         if (!empty($error)) {
             
-            echo $error;
+            print json_encode($error);
             exit();
             
         }
@@ -140,34 +155,30 @@
       
       
     }
-    if ($_GET['action'] == "yourScore"){
     
-      if($_SESSION['id']){
-      
-        $xquery = "SELECT * FROM users WHERE id = '". mysqli_real_escape_string($link, $_SESSION['id'])."' LIMIT 1";
-            
-            $xresult = mysqli_query($link, $xquery);
-            
-            $xrow = mysqli_fetch_assoc($xresult);
-            
-            if($xrow['score'] > $_POST['score'] or $xrow['score'] == 0 ){
-              
-              $query = "UPDATE users SET score = '".$_POST['score']."' WHERE id = '".$_SESSION['id']."' ";
-              mysqli_query($link, $query);
-              
-            }
-
-      
-            echo 1;
-            
         
-      }else {
+    
+        
+     if($_GET['page'] == "bronze"){
+     
+      echo '<span id="hidden_value">bronze</span>';
       
-        echo "Please login if you want your score to be saved.";
-      }
+     }else if($_GET['page'] == "silver"){
+     
+      echo '<span id="hidden_value">silver</span>';
       
+     }else if($_GET['page'] == "gold"){
+     
+      echo '<span id="hidden_value">gold</span>';
       
+     }else {
+     
+      echo '<span id="hidden_value">normal</span>';
       
-    }
+     }
+
+
+    
+   
 
 ?>

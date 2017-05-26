@@ -1,0 +1,46 @@
+#logo {
+  background-color: #909495;
+}
+
+#top {
+  height: 75px;
+  background-color: #909495;
+  text-align: center;
+  color: beige;
+}
+
+#login-signup {
+  padding-top: 10px;
+  text-align: center;
+  background-color: #909495;
+}
+
+#section-one {
+  border-right: 1px solid #585858;
+  background-color: #CBD7DA;
+}
+
+#section-two {
+  text-align: center;
+  background-color: #CBD7DA;
+}
+
+#section-three {
+  border-left: 1px solid #585858;
+  background-color: #CBD7DA;
+}
+
+#score-area {
+  border-left: 1px solid #585858;
+  background-color: #CBD7DA;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+#section-one-a {
+  background-color: #CBD7DA;
+}
+
+#section-two-b {
+  background-color: #CBD7DA;
+}

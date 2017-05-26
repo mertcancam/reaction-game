@@ -1,11 +1,10 @@
 #second-bar {
   background-color: #257D92;
   height: 35px;
+  margin-bottom: 0;
 }
 
-#section-one {
-  border-right: 1px solid #585858;
-}
+
 
 .time-score {
   color: beige;
@@ -18,16 +17,33 @@
   border: none;
   font-family: 'Bungee Shade', cursive;
   background-color: #DDDDDD;
+  margin: 0;
+  
   
 }
 
-.level_options:hover{
-  color:aqua;
+
+/*.dropdown-menu {
+    display: none;
+    position: relative;
+    bottom: 4px;
+    
+}*/
+
+/*.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
-#section-two {
-  text-align: center;
+.dropdown-menu a:hover{
+  background-color: #257D92;
+}*/
+
+.dropdown-item a:hover {
+  background-color: aqua;
 }
+
+
+
 
 .button-style {
   border-radius: 10px;
@@ -45,8 +61,4 @@
 
 #resetButton{
   margin-left: 30px;
-}
-
-#section-three {
-  border-left: 1px solid #585858;
 }

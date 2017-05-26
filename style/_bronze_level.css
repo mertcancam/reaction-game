@@ -1,0 +1,46 @@
+#logo {
+  background-color: #BB7D0B;
+}
+
+#top {
+  height: 75px;
+  background-color: #BB7D0B;
+  text-align: center;
+  color: beige;
+}
+
+#login-signup {
+  padding-top: 10px;
+  text-align: center;
+  background-color: #BB7D0B;
+}
+
+#section-one {
+  border-right: 1px solid #585858;
+  background-color: #E4A531;
+}
+
+#section-two {
+  text-align: center;
+  background-color: #E4A531;
+}
+
+#section-three {
+  border-left: 1px solid #585858;
+  background-color: #E4A531;
+}
+
+#score-area {
+  border-left: 1px solid #585858;
+  background-color: #E4A531;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+#section-one-a {
+  background-color: #E4A531;
+}
+
+#section-two-b {
+  background-color: #E4A531;
+}

@@ -1,0 +1,46 @@
+#logo {
+  background-color: #EB9C01;
+}
+
+#top {
+  height: 75px;
+  background-color: #EB9C01;
+  text-align: center;
+  color: beige;
+}
+
+#login-signup {
+  padding-top: 10px;
+  text-align: center;
+  background-color: #EB9C01;
+}
+
+#section-one {
+  border-right: 1px solid #585858;
+  background-color: #F2B400;
+}
+
+#section-two {
+  text-align: center;
+  background-color: #F2B400;
+}
+
+#section-three {
+  border-left: 1px solid #585858;
+  background-color: #F2B400;
+}
+
+#score-area {
+  border-left: 1px solid #585858;
+  background-color: #F2B400;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+#section-one-a {
+  background-color: #F2B400;
+}
+
+#section-two-b {
+  background-color: #F2B400;
+}

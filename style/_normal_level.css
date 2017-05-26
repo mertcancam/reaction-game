@@ -1,0 +1,45 @@
+#logo {
+  background-color: #232F3E;
+}
+
+#top {
+  height: 75px;
+  background-color: #232F3E;
+  text-align: center;
+  color: beige;
+}
+
+#login-signup {
+  padding-top: 10px;
+  text-align: center;
+  background-color: #232F3E;
+}
+
+#section-one {
+  border-right: 1px solid #585858;
+}
+
+#section-two {
+  text-align: center;
+}
+
+
+#section-three {
+  border-left: 1px solid #585858;
+}
+
+
+#score-area {
+  border-left: 1px solid #585858;
+  background-color: #257D92;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+#section-one-a{
+
+}
+
+#section-one-b{
+
+}

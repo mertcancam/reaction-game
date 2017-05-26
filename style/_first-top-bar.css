@@ -1,23 +1,13 @@
-#logo {
-  background-color: #232F3E;
-}
-
 .welcome-title{
   color: beige;
   text-align: center;
   font-size: 120%;
 }
 
-#top {
-  height: 75px;
-  background-color: #232F3E;
-  text-align: center;
-  color: beige;
+#hidden_value{
+  display: none;
 }
 
-#login-signup {
-  padding-top: 10px;
-  text-align: center;
-  background-color: #232F3E;
+#topBar{  
+  overflow: hidden;
 }
-

@@ -2,12 +2,6 @@
   background-color: beige;
 }
 
-#score-area {
-  border-left: 1px solid #585858;
-  background-color: #257D92;
-  overflow-y: scroll;
-
-}
 
 .leaderboard-title{
   text-align: center;
