@@ -3,7 +3,7 @@
 session_start();
 
 
-$link = mysqli_connect("localhost", "reflekses", "Mm2004Ee311320!!", "reflekses");
+$link = mysqli_connect("localhost", "reflekses", "************", "reflekses");
 
 if (mysqli_connect_errno()) {
         
